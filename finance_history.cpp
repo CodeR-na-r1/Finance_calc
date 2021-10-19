@@ -38,17 +38,17 @@ size_t finance_history::get_num_of_records()
 
 void finance_history::Add()
 {
-	cout << "Ââåäèòå ÷èñëîâîå çíà÷åíèå:\n> ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾Ð²Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ:\n> ";
 	long int value;
 enter_value:
 	cin >> value;
-	if (cin.fail()) { cin.clear(); cin.ignore(999, '\n'); cout << "Íåâåðíûé ââîä! Ââåäèòå çàíîãî: "; goto enter_value; }
+	if (cin.fail()) { cin.clear(); cin.ignore(999, '\n'); cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð°Ð½Ð¾Ð³Ð¾: "; goto enter_value; }
 	data.push_back(value);
 
 	if (char(cin.peek()) == '\n')
 		cin.ignore();
 
-	cout << "Ââåäèòå êîììåíòàðèé ê çíà÷åíèþ:\n> ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹ Ðº Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÑŽ:\n> ";
 	string str;
 enter_name:
 	SetConsoleCP(1251);
@@ -57,7 +57,7 @@ enter_name:
 
 	if (str.size() >= 15)
 	{
-		cout << "Íåëüçÿ èìÿ áîëåå 14 ñèìâîëîâ, ââåäèòå çàíîãî: ";
+		cout << "ÐÐµÐ»ÑŒÐ·Ñ Ð¸Ð¼Ñ Ð±Ð¾Ð»ÐµÐµ 14 ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð², Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð°Ð½Ð¾Ð³Ð¾: ";
 		goto enter_name;
 	}
 
@@ -71,13 +71,13 @@ void finance_history::Erase()
 enter_index:
 	string input;
 	int index;
-	cout << "Ââåäèòå íîìåð óäàëÿåìîé ñòðîêè èñòîðèè: (äëÿ îòìåíû - q)" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑƒÐ´Ð°Ð»ÑÐµÐ¼Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸ Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ð¸: (Ð´Ð»Ñ Ð¾Ñ‚Ð¼ÐµÐ½Ñ‹ - q)" << endl;
 	cin >> input;
 	if (input == "q")
 		return;
 	else
 		index = stoi(input);
-	if (cin.fail() || index < 1 || index > data.size()) { cin.clear(); cin.ignore(999, '\n'); cout << "Íåâåðíûé ââîä! Ââåäèòå çàíîãî: "; goto enter_index; }
+	if (cin.fail() || index < 1 || index > data.size()) { cin.clear(); cin.ignore(999, '\n'); cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð°Ð½Ð¾Ð³Ð¾: "; goto enter_index; }
 
 	int count = 1;
 	for (auto i = data.begin(); i < data.end(); i++)
@@ -101,7 +101,7 @@ enter_index:
 		++count;
 	}
 
-	cout << "Óäàëåíî!" << endl;
+	cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð¾!" << endl;
 
 	return;
 }
@@ -109,11 +109,11 @@ enter_index:
 void finance_history::See()
 {
 	cout << "---------------------------------------";
-	cout << "\nÍàçâàíèå èñòîðèè: " << this->name << endl << endl;
+	cout << "\nÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ð¸: " << this->name << endl << endl;
 
 	int total(0), profit(0), costs(0);
 
-	cout << setw(5) << "<Ñòðîêà>" << setw(25) << "×èñëîâîå çíà÷åíèå" << "\t" << setw(14) << "Êîììåíòàðèé" << endl;
+	cout << setw(5) << "<Ð¡Ñ‚Ñ€Ð¾ÐºÐ°>" << setw(25) << "Ð§Ð¸ÑÐ»Ð¾Ð²Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ" << "\t" << setw(14) << "ÐšÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹" << endl;
 	for (long int i = 0; i < data.size(); i++)
 	{
 		cout << setw(5) << "<" << i + 1 << ">  " << setw(20) << data[i] << "\t" << setw(25) << comment[i] << endl;
@@ -121,9 +121,9 @@ void finance_history::See()
 		data[i] >= 0 ? profit += data[i] : costs += data[i];
 	}
 
-	cout << "Ïîëó÷åíî: " << profit << endl;
-	cout << "Ïîòðà÷åíî: " << costs << endl;
-	cout << "Èòîãî: " << total << endl;
+	cout << "ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¾: " << profit << endl;
+	cout << "ÐŸÐ¾Ñ‚Ñ€Ð°Ñ‡ÐµÐ½Ð¾: " << costs << endl;
+	cout << "Ð˜Ñ‚Ð¾Ð³Ð¾: " << total << endl;
 	cout << "---------------------------------------";
 
 	return;
