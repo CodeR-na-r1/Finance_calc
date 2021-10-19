@@ -54,16 +54,17 @@ void Tune()
 	{
 		string temp_path = path_files + "\\" + file_names[i] + ".r1";
 		finance_history fs;
-		cout << "1";
-		ifstream file(temp_path);
-		cout << "2";
-		/*if (!file.is_open())
-			continue;
-			*/
-		fs.load_from_file(file);
-		cout << "3";
-		f_historyes.push_back(fs);
-		cout << "<" << i + 1 << ">  " << fs.name << endl;
+		try
+		{
+			ifstream file(temp_path);
+			fs.load_from_file(file);
+			f_historyes.push_back(fs);
+			cout << "<" << i + 1 << ">  " << fs.name << endl;
+		}
+		catch (...)
+		{
+			cout << "Ошибка при чтении файла \"" << temp_path << "\" Он будет пропущен." << endl;
+		}
 	}
 
 	file_names.clear();
@@ -128,6 +129,41 @@ enter_name:
 	return;
 }
 
+void import()
+{
+	cout << "Для импорта файла с историей поместите его в данную траекторию: " << path_files + "\\\\" << endl;
+	cout << "Затем введите его название вместе с расширением файла: (для отмены ввода - q" << endl;
+	string name_file;
+
+	SetConsoleCP(1251);
+	getline(cin, name_file);
+	SetConsoleCP(866);
+
+	if (name_file=="q")
+	{
+		return;
+	}
+
+	ifstream in(path_files + "\\" + name_file);
+
+	if (!in.is_open())
+	{
+		cout << "Файл не обнаружен!" << endl;
+		return;
+	}
+
+	finance_history fs;
+	fs.load_from_file(in);
+
+	f_historyes.push_back(fs);
+
+	cout << "Файл \"" << fs.name << "\" добавлен!" << endl;
+
+	in.close();
+	is_edit = true;
+	return;	//При копировании файла (клонировании (добавлении уже имеющегося)) нужно сразу сменить имя у одного из них и вызвать save
+}
+
 void Delete()
 {
 enter_index:
@@ -166,13 +202,45 @@ void rename()
 	set_now_fs();
 
 	string str;
-	cout << "Введите новое имя: " << endl;
+	cout << "Введите новое имя: ";
 
+	if (char(cin.peek()) == '\n')
+		cin.ignore();
+
+enter_name:
 	SetConsoleCP(1251);
 	getline(cin, str);
 	SetConsoleCP(866);
 
+	if (str.size() >= 15)
+	{
+		cout << "Нельзя имя более 14 символов, введите заного: ";
+		goto enter_name;
+	}
+
+	string old_name = f_historyes[now_fs - 1].name;
 	f_historyes[now_fs - 1].name = str;
+
+	bool flag = false;
+	if ((old_name + ".r1") != str)
+	{
+		flag = true;
+		for (int i = 0; i < f_historyes.size(); i++)
+		{
+			if (old_name == f_historyes[i].name)
+			{
+				flag = false;
+				break;
+			}
+		}
+	}
+	if (flag)
+	{
+		file_names.push_back(old_name);
+	}
+
+
+	cout << "Успешно!" << endl;
 
 	is_edit = true;
 	return;
@@ -255,6 +323,14 @@ void cclear()
 
 void reset()
 {
+	cout << "Сбросить все? (y/n)" << endl;
+
+	string choose;
+	cin >> choose;
+
+	if (!(choose == "y"))
+		return;
+
 	while (f_historyes.size())
 	{
 		file_names.push_back(f_historyes[f_historyes.size() - 1].name);
@@ -268,7 +344,6 @@ void reset()
 	RemoveDirectory(L"C:\\RR_logs");
 
 	cout << "Удалить папку с хранением данных программы? (y/n)" << endl;
-	string choose;
 
 	cin >> choose;
 
@@ -285,12 +360,13 @@ int change(string input)
 {
 	if (input == "list" || input == "l") { list(); return 0; }
 	if (input == "create" || input == "c") { create(); return 0; }
+	if (input == "import" || input == "i") { import(); return 0; }
 	if (input == "q") { now_fs = 0; return 0; }
-	if (input == "rename") { rename(); return 0; }
+	if (input == "rename" || input == "r") { rename(); return 0; }
 	if (input == "help" || input == "h") { help(); return 0; }
 	if (input == "clear" || input == "cl") { clear(); return 0; }
 	if (input == "cclear" || input == "cc") { cclear(); return 0; }
-	if (input == "reset" || input == "r") { reset(); return 2; }
+	if (input == "reset") { reset(); return 2; }
 	if (input == "save" || input == "s") { save(); return 0; }
 	if (input == "exit" || input == "e") { exit(); return 2; }
 
