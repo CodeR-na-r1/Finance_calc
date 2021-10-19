@@ -21,10 +21,10 @@ void set_now_fs()
 {
 	if (!now_fs)
 	{
-		cout << "Ââåäèòå íîìåð èñòîðèè äëÿ äàëüíåéøåé îáðàáîòêè: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ð¸ Ð´Ð»Ñ Ð´Ð°Ð»ÑŒÐ½ÐµÐ¹ÑˆÐµÐ¹ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸: ";
 	enter_now_fs:
 		cin >> now_fs;
-		if (cin.fail() || now_fs < 1 || now_fs > f_historyes.size()) { cin.clear(); cin.ignore(999, '\n'); cout << "Íåâåðíûé ââîä! Ââåäèòå çàíîãî: "; goto enter_now_fs; }
+		if (cin.fail() || now_fs < 1 || now_fs > f_historyes.size()) { cin.clear(); cin.ignore(999, '\n'); cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð°Ð½Ð¾Ð³Ð¾: "; goto enter_now_fs; }
 	}
 	
 	return;
@@ -43,11 +43,11 @@ void Tune()
 		file_names.push_back(data);
 	}
 	in.close();
-	cout << "Ñ÷èòàíî ôàéëîâ: " << file_names.size() << endl;
+	cout << "Ð¡Ñ‡Ð¸Ñ‚Ð°Ð½Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²: " << file_names.size() << endl;
 	if (file_names.size() < 1)
 		return;
 
-	cout << "Èìåíà ôàéëîâ: " << endl;
+	cout << "Ð˜Ð¼ÐµÐ½Ð° Ñ„Ð°Ð¹Ð»Ð¾Ð²: " << endl;
 
 	
 	for (long long int i = 0; i < file_names.size(); i++)
@@ -72,10 +72,10 @@ void Tune()
 
 void First_tune()
 {
-	cout << "Äàííûå íå îáíàðóæåíû âîçìîæíî ïðîãðàììà çàïóùåíà âïåðâûå" << endl;
+	cout << "Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð½Ðµ Ð¾Ð±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½Ñ‹ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð° Ð·Ð°Ð¿ÑƒÑ‰ÐµÐ½Ð° Ð²Ð¿ÐµÑ€Ð²Ñ‹Ðµ" << endl;
 	CreateDirectory(L"C:\\RR_logs", NULL);
 	string in;
-	cout << "Ââåäè òðàåêòîðèþ äëÿ õðàíåíèÿ äàííûõ: (ïðèìåð: Ñ:\\\\folder) 0 - çàäàñò ïî óìîë÷àíèþ" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸ Ñ‚Ñ€Ð°ÐµÐºÑ‚Ð¾Ñ€Ð¸ÑŽ Ð´Ð»Ñ Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ñ Ð´Ð°Ð½Ð½Ñ‹Ñ…: (Ð¿Ñ€Ð¸Ð¼ÐµÑ€: Ð¡:\\\\folder) 0 - Ð·Ð°Ð´Ð°ÑÑ‚ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ" << endl;
 
 	SetConsoleCP(1251);
 	getline(cin, in);
@@ -97,9 +97,9 @@ void First_tune()
 void list()
 {
 	cout << "\n----------------------------------------\n";
-	cout << "\nÔàéëîâ: " << f_historyes.size() << endl << endl;
+	cout << "\nÐ¤Ð°Ð¹Ð»Ð¾Ð²: " << f_historyes.size() << endl << endl;
 
-	cout << setw(5) << "<Ñòðîêà>" << setw(27) << "Èìÿ ôàéëà" << "\t" << setw(12) << "Êîë-âî çàïèñåé" << endl;
+	cout << setw(5) << "<Ð¡Ñ‚Ñ€Ð¾ÐºÐ°>" << setw(27) << "Ð˜Ð¼Ñ Ñ„Ð°Ð¹Ð»Ð°" << "\t" << setw(12) << "ÐšÐ¾Ð»-Ð²Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹" << endl;
 	for (long long int i = 0; i < f_historyes.size(); i++)
 	{
 		cout << setw(3) << "<" << i + 1 << ">  " << setw(25) << f_historyes[i].name << "\t" << setw(14) << f_historyes[i].get_num_of_records() << endl;
@@ -111,7 +111,7 @@ void list()
 void create()
 {
 	f_historyes.push_back(finance_history());
-	cout << "Ââåäèòå íàçâàíèå ôèíàíñîâîé èñòîðèè: " << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð¸Ð½Ð°Ð½ÑÐ¾Ð²Ð¾Ð¹ Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ð¸: " << endl;
 enter_name:
 	SetConsoleCP(1251);
 	getline(cin, f_historyes[f_historyes.size() - 1].name);
@@ -119,11 +119,11 @@ enter_name:
 
 	if (f_historyes[f_historyes.size() - 1].name.size() >= 15)
 	{
-		cout << "Íåëüçÿ èìÿ áîëåå 14 ñèìâîëîâ, ââåäèòå çàíîãî: ";
+		cout << "ÐÐµÐ»ÑŒÐ·Ñ Ð¸Ð¼Ñ Ð±Ð¾Ð»ÐµÐµ 14 ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð², Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð°Ð½Ð¾Ð³Ð¾: ";
 		goto enter_name;
 	}
 
-	cout << "Ñîçäàíî!" << endl;
+	cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¾!" << endl;
 	is_edit = true;
 	return;
 }
@@ -133,13 +133,13 @@ void Delete()
 enter_index:
 	string input;
 	int index;
-	cout << "Ââåäèòå íîìåð óäàëÿåìîé èñòîðèè: (äëÿ îòìåíû - q)" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑƒÐ´Ð°Ð»ÑÐµÐ¼Ð¾Ð¹ Ð¸ÑÑ‚Ð¾Ñ€Ð¸Ð¸: (Ð´Ð»Ñ Ð¾Ñ‚Ð¼ÐµÐ½Ñ‹ - q)" << endl;
 	cin >> input;
 	if (input == "q")
 		return;
 	else
 		index = stoi(input);
-	if (cin.fail() || index < 1 || index > f_historyes.size()) { cin.clear(); cin.ignore(999, '\n'); cout << "Íåâåðíûé ââîä! Ââåäèòå çàíîãî: "; goto enter_index; }
+	if (cin.fail() || index < 1 || index > f_historyes.size()) { cin.clear(); cin.ignore(999, '\n'); cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´! Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð°Ð½Ð¾Ð³Ð¾: "; goto enter_index; }
 
 	file_names.push_back(f_historyes[index - 1].name);
 
@@ -154,7 +154,7 @@ enter_index:
 		++count;
 	}
 
-	cout << "Óäàëåíî!" << endl;
+	cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð¾!" << endl;
 
 	is_edit = true;
 	now_fs = 0;
@@ -166,7 +166,7 @@ void rename()
 	set_now_fs();
 
 	string str;
-	cout << "Ââåäèòå íîâîå èìÿ: " << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ð¾Ðµ Ð¸Ð¼Ñ: " << endl;
 
 	SetConsoleCP(1251);
 	getline(cin, str);
@@ -182,7 +182,7 @@ void save()
 {
 	if (!is_edit)
 	{
-		cout << "Ïîñëåäíèå èçìåíåíèÿ óæå áûëè ñîõðàíåíû!" << endl;
+		cout << "ÐŸÐ¾ÑÐ»ÐµÐ´Ð½Ð¸Ðµ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ ÑƒÐ¶Ðµ Ð±Ñ‹Ð»Ð¸ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹!" << endl;
 		return;
 	}
 
@@ -211,7 +211,7 @@ void save()
 	}
 	file_names.clear();
 
-	cout << "Ñîõðàíåíî!" << endl;
+	cout << "Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¾!" << endl;
 	is_edit = false;
 	return;
 }
@@ -221,7 +221,7 @@ void exit()
 	if (is_edit)
 	{
 		string choose;
-		cout << "Ñîõðàíèòü èçìåíåíèÿ ïåðåä âûõîäîì? (y/n)" << endl;
+		cout << "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ð¿ÐµÑ€ÐµÐ´ Ð²Ñ‹Ñ…Ð¾Ð´Ð¾Ð¼? (y/n)" << endl;
 		cin >> choose;
 		if (choose=="y")
 			save();
@@ -248,7 +248,7 @@ void cclear()
 		f_historyes.pop_back();
 	}
 
-	cout << "Î÷èùåíî!" << endl;
+	cout << "ÐžÑ‡Ð¸Ñ‰ÐµÐ½Ð¾!" << endl;
 	is_edit = true;
 	return;
 }
@@ -267,7 +267,7 @@ void reset()
 
 	RemoveDirectory(L"C:\\RR_logs");
 
-	cout << "Óäàëèòü ïàïêó ñ õðàíåíèåì äàííûõ ïðîãðàììû? (y/n)" << endl;
+	cout << "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿Ð°Ð¿ÐºÑƒ Ñ Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸ÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹? (y/n)" << endl;
 	string choose;
 
 	cin >> choose;
@@ -277,7 +277,7 @@ void reset()
 		RemoveDirectory(  wstring(path_files.begin(), path_files.end()).c_str()  );
 	}
 
-	cout << "Ñáðîøåíî!" << endl;
+	cout << "Ð¡Ð±Ñ€Ð¾ÑˆÐµÐ½Ð¾!" << endl;
 	return;
 }
 
@@ -298,7 +298,7 @@ int change(string input)
 
 	if (f_historyes.size() < 1)
 	{
-		cout << "Èñòîðèé íåò" << endl;
+		cout << "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ð¹ Ð½ÐµÑ‚" << endl;
 		return 0;
 	}
 
@@ -323,7 +323,7 @@ int main()
 	string command;
 	int returned_res;
 
-	cout << "\nÆäó êîìàíäó: \n";
+	cout << "\nÐ–Ð´Ñƒ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñƒ: \n";
 
 	while (true)
 	{
@@ -343,7 +343,7 @@ int main()
 
 		if (returned_res == -1)
 		{
-			cout << "Íåâåðíàÿ êîìàíäà" << endl;
+			cout << "ÐÐµÐ²ÐµÑ€Ð½Ð°Ñ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð°" << endl;
 			continue;
 		}
 
